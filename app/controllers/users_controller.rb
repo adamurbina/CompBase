@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   get '/' do
     if Helper.is_logged_in?(session)
       @user = Helper.current_user(session)
-      redirect '/comps/home'
+      redirect '/home'
     else
       erb :'/welcome'
     end
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   get '/login' do
 
     if Helper.is_logged_in?(session)
-      redirect '/comps/comps'
+      redirect '/home'
     else
       erb :'/users/login'
     end
@@ -30,7 +30,18 @@ class UsersController < ApplicationController
 
     user = User.create(username: params[:username], password: params[:password], email: params[:email])
     session[:user_id] = user.id
-    redirect '/comps'
+    redirect '/home'
+  end
+
+  post '/login' do
+    user = User.find_by(username: params[:username])
+
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect '/home'
+    else
+      redirect '/login'
+    end
   end
 
 
