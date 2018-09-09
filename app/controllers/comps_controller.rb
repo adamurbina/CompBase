@@ -1,0 +1,3 @@
+class CompsController < ApplicationController
+  
+end
