@@ -5,3 +5,10 @@
 <p>Rent: <%=@comp.rent%></p>
 <p>Term: <%=@comp.term%></p>
 <br>
+
+<form method='get' action='/comps/<%= @comp.id %>/edit'>
+  <input type="submit" value="Edit"><br>
+</form>
+<form method="post" action="/comps/<%= @comp.id %>/delete">
+  <input type="submit" value="Delete"><br>
+</form>

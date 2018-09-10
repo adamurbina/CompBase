@@ -20,13 +20,18 @@ class CompsController < ApplicationController
   end
 
   get '/comps/:id' do
-    @comp = Comp.find_by(id: params[:id])
-    erb :'/comps/show_comp'
+    if Helper.is_logged_in?(session)
+      @comp = Comp.find_by(id: params[:id])
+      erb :'/comps/show_comp'
+    else
+      redirect '/'
+    end
   end
 
   get '/comps/:id/edit' do
     @comp = Comp.find_by(id: params[:id])
     if @comp.user == Helper.current_user(session)
+      @buildings = Building.all
       erb :'/comps/edit_comp'
     else
       redirect '/home'
@@ -54,6 +59,13 @@ class CompsController < ApplicationController
 
     redirect "/comps/#{new_comp.id}"
 
+  end
+
+  post '/comps/:id/edit' do
+    @comp = Comp.find_by(id: params[:id])
+    if @comp.user_id == session[:user_id]
+
+    end
   end
 
 end

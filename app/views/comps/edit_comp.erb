@@ -1,2 +1,30 @@
-<h1>Edit Comparable</h1>
-<h2>COMING SOON</h2>
+<form method="post" action="/comps/<%= @comp.id %>/edit">
+<h1>Edit Comp:</h1>
+
+  <p><strong>Select Building:</strong></p>
+  <% @buildings.each do |building| %>
+    <input type="checkbox" name="building_id" value="<%= building.id %>" <%='checked' if @comp.building.id == building.id %>>
+     <%= building.address %>, <%= building.city_state%><br>
+  <% end %>
+
+  <p>Or create a new building:</p>
+  <label>Address: </label>
+  <input type="text" name="building[address]"><br>
+  <label>City, State: </label>
+  <input type="text" name="building[city_state]">
+  <br>
+
+</br>
+
+<p>Deal Terms:</p>
+<label>Date: </label>
+  <input type="text" name="comp[date]" value="<%= @comp.date %>"><br>
+<label>Size (SF): </label>
+  <input type="number" name="comp[size]" value="<%= @comp.size %>"></br>
+<label>Rent ($/SF): </label>
+  <input type="number" name="comp[rent]" step="0.01" value="<%= @comp.rent %>"> <br>
+<label>Term: </label>
+  <input type="text" name="comp[term]" value="<%= @comp.term %>"><br>
+</br>
+<input type="submit" value="Submit">
+</for
