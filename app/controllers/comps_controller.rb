@@ -20,7 +20,8 @@ class CompsController < ApplicationController
   end
 
   get '/comps/:id' do
-    
+    @comp = Comp.find_by(id: params[:id])
+    erb :'/comps/show_comp'
   end
 
   get '/comps/:id/edit' do
