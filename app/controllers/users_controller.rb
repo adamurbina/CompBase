@@ -33,17 +33,25 @@ class UsersController < ApplicationController
     redirect '/home'
   end
 
+  get '/users/:id' do
+    @user = User.find_by(id: params[:id])
+    if @user.id == Helper.current_user(session).id
+      erb :'/users/show'
+    else
+      redirect '/'
+    end
+
+  end
+
   post '/login' do
     user = User.find_by(username: params[:username])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/home'
+      redirect "/users/#{user.id}"
     else
-      redirect '/login'
+      redirect '/'
     end
   end
-
-
 
 end

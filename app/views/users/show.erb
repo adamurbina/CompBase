@@ -1,0 +1,14 @@
+<h1>Welcome back!</h1>
+
+<h3>Here are your comps</h3>
+<br>
+<% @user.comps.each.with_index(1) do |comp, index| %>
+  <strong><a href="/comps/<%= comp.id %>/edit">Comp <%= index %>:</strong></a><br>
+  Address: <%= comp.building.address %>, <%= comp.building.city_state %><br>
+  Date: <%= comp.date %><br>
+  Rentable SF: <%= comp.size %><br>
+  Starting Rent: <%= comp.rent %><br>
+  Term: <%= comp.term %><br>
+<% end %><br></br>
+
+<a href="/home">Click here to view all comps</a>
