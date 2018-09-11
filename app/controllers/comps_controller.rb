@@ -63,9 +63,22 @@ class CompsController < ApplicationController
 
   post '/comps/:id/edit' do
     @comp = Comp.find_by(id: params[:id])
-    if @comp.user_id == session[:user_id]
 
+    params[:comp].each do |attribute, value|
+      value.empty? ? (redirect "/comps/#{@comp.id}/edit") : (@comp.send("#{attribute}=", value))
     end
+
+    if params[:building_id]
+      building = Building.find_by(id: params[:building_id])
+    else
+      building = Building.create(address: params[:building][:address], city_state: params[:building][:city_state])
+    end
+
+    @comp.building = building
+    @comp.save
+
+    redirect "/comps/#{@comp.id}"
+
   end
 
 end

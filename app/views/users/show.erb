@@ -5,10 +5,11 @@
 <% @user.comps.each.with_index(1) do |comp, index| %>
   <strong><a href="/comps/<%= comp.id %>/edit">Comp <%= index %>:</strong></a><br>
   Address: <%= comp.building.address %>, <%= comp.building.city_state %><br>
+  Tenant: <%= comp.tenant %><br>
   Date: <%= comp.date %><br>
   Rentable SF: <%= comp.size %><br>
   Starting Rent: <%= comp.rent %><br>
-  Term: <%= comp.term %><br>
+  Term: <%= comp.term %><br></br>
 <% end %><br></br>
 
 <form method="GET" action="/new">

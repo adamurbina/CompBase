@@ -3,10 +3,12 @@
 <% @comps.each.with_index(1) do |comp, index| %>
   <strong>Comp <%= index %>:</strong><br>
   Address: <%= comp.building.address %>, <%= comp.building.city_state %><br>
+  Tenant: <%= comp.tenant %><br>
   Date: <%= comp.date %><br>
   Rentable SF: <%= comp.size %><br>
   Starting Rent: <%= comp.rent %><br>
-  Term: <%= comp.term %><br></br>
+  Term: <%= comp.term %><br>
+  Creator: <%= comp.user.username %><br></br>
 <% end %><br></br>
 
 <a href="/users/<%= @user.id %>">View my comps</a>
