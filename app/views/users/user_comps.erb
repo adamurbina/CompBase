@@ -1,9 +1,12 @@
 <h1>Welcome back!</h1>
 
-<h3>Here are your comps</h3>
+<a href="/home">View all comps</a>
 <br>
+
+<h3>Here are your comps</h3>
+
 <% @user.comps.each.with_index(1) do |comp, index| %>
-  <strong><a href="/comps/<%= comp.id %>/edit">Comp <%= index %>:</strong></a><br>
+  <strong><a href="/comps/<%= comp.id %>">Comp <%= index %>:</strong></a><br>
   Address: <%= comp.building.address %>, <%= comp.building.city_state %><br>
   Tenant: <%= comp.tenant %><br>
   Date: <%= comp.date %><br>
@@ -15,5 +18,3 @@
 <form method="GET" action="/new">
   <input type="submit" value="Add Comp"><br><br>
 </form>
-
-<a href="/home">Click here to view all comps</a>

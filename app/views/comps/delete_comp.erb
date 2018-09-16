@@ -1,0 +1,15 @@
+<h1>Delete Following Comp?</h1>
+
+<h3><font color="red">This action cannot be undone</font></h3>
+
+<form method="post" action="/comps/<%= @comp.id %>/delete"
+  <p>Building: <%= @comp.building.address %>, <%=@comp.building.city_state%></p>
+  <p>Tenant: <%=@comp.tenant%></p>
+  <p>Date: <%=@comp.date%></p>
+  <p>Size: <%=@comp.size%></p>
+  <p>Rent: <%=@comp.rent%></p>
+  <p>Term: <%=@comp.term%></p>
+  <br></br>
+<input type="submit" value="DELETE"><br></br>
+<a href="/home">Go Home</a>
+</form>

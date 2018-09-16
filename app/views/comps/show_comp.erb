@@ -10,6 +10,10 @@
 <form method='get' action='/comps/<%= @comp.id %>/edit'>
   <input type="submit" value="Edit"><br>
 </form>
-<form method="post" action="/comps/<%= @comp.id %>/delete">
+<form method="get" action="/comps/<%= @comp.id %>/delete">
   <input type="submit" value="Delete"><br>
 </form>
+
+<br></br>
+<a href="/home">All Comps</a><br><br>
+<a href="/users/<%= @user.id %>">My Comps</a>

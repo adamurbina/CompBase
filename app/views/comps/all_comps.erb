@@ -1,4 +1,6 @@
 <h1>All comps</h1>
+<a href="/users/<%= @user.id %>">View my comps</a>
+<br></br>
 
 <% @comps.each.with_index(1) do |comp, index| %>
   <strong>Comp <%= index %>:</strong><br>
@@ -10,5 +12,3 @@
   Term: <%= comp.term %><br>
   Creator: <%= comp.user.username %><br></br>
 <% end %><br></br>
-
-<a href="/users/<%= @user.id %>">View my comps</a>

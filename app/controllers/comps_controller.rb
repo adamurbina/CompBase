@@ -3,7 +3,7 @@ class CompsController < ApplicationController
     if Helper.is_logged_in?(session)
       @comps = Comp.all
       @user = Helper.current_user(session)
-      erb :'/comps/home'
+      erb :'/comps/all_comps'
     else
       redirect '/'
     end
@@ -22,6 +22,7 @@ class CompsController < ApplicationController
   get '/comps/:id' do
     if Helper.is_logged_in?(session)
       @comp = Comp.find_by(id: params[:id])
+      @user = Helper.current_user(session)
       erb :'/comps/show_comp'
     else
       redirect '/'
@@ -32,7 +33,17 @@ class CompsController < ApplicationController
     @comp = Comp.find_by(id: params[:id])
     if @comp.user == Helper.current_user(session)
       @buildings = Building.all
+      @user = Helper.current_user(session)
       erb :'/comps/edit_comp'
+    else
+      redirect '/home'
+    end
+  end
+
+  get '/comps/:id/delete' do
+    @comp = Comp.find_by(id: params[:id])
+    if @comp.user == Helper.current_user(session)
+      erb :'/comps/delete_comp'
     else
       redirect '/home'
     end
@@ -78,6 +89,14 @@ class CompsController < ApplicationController
     @comp.save
 
     redirect "/comps/#{@comp.id}"
+
+  end
+
+  post '/comps/:id/delete' do
+    @comp = Comp.find_by(id: params[:id])
+    @comp.delete
+    @user = Helper.current_user(session)
+    redirect "/users/#{@user.id}"
 
   end
 

@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
     if @user.id == Helper.current_user(session).id
-      erb :'/users/show'
+      erb :'/users/user_comps'
     else
       redirect '/'
     end
