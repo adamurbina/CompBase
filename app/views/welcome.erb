@@ -1,6 +1,12 @@
 
 <div align="center">
-  <h1>Welcome to CompBase!</h1>
+  
+  <% if flash.has?(:message)%>
+    <h1><%= flash[:message] %></h1>
+  <% else %>
+    <h1>Welcome to CompBase!</h1>
+  <% end %>
+
   <h2>Please log in or create an account</h2>
   <br>
   <a href="/login">LOG IN</a><br></br>

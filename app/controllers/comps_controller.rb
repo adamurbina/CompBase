@@ -1,12 +1,12 @@
 class CompsController < ApplicationController
-  get '/home' do
+
+  get '/all' do
     if Helper.is_logged_in?(session)
-      @comps = Comp.all
       @user = Helper.current_user(session)
+      @comps = Comp.all
       erb :'/comps/all_comps'
-    else
-      redirect '/'
     end
+
   end
 
   get '/new' do
@@ -67,6 +67,7 @@ class CompsController < ApplicationController
     new_comp.building = building
     new_comp.user = user
     new_comp.save
+    flash[:message] = "New Comp Created!"
 
     redirect "/comps/#{new_comp.id}"
 
@@ -96,6 +97,7 @@ class CompsController < ApplicationController
     @comp = Comp.find_by(id: params[:id])
     @comp.delete
     @user = Helper.current_user(session)
+    flash[:message] = "Comp deleted."
     redirect "/users/#{@user.id}"
 
   end

@@ -1,3 +1,7 @@
+<% if flash.has?(:message)%>
+  <h2><%= flash[:message] %></h2>
+<% end %>
+
 <h1>Review Comp</h1>
 <p>Building: <%= @comp.building.address %>, <%=@comp.building.city_state%></p>
 <p>Tenant: <%=@comp.tenant%></p>

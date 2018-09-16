@@ -1,9 +1,12 @@
-<h1>Welcome back!</h1>
+<h1><%= @user.username %>'s Comps</h1>
 
-<a href="/home">View all comps</a>
-<br>
+<% if flash.has?(:message)%>
+  <font color="red"><h2><%= flash[:message] %></h2></font>
+<% end %>
 
-<h3>Here are your comps</h3>
+
+<a href="/all">View all comps</a>
+<br></br>
 
 <% @user.comps.each.with_index(1) do |comp, index| %>
   <strong><a href="/comps/<%= comp.id %>">Comp <%= index %>:</strong></a><br>
@@ -17,4 +20,8 @@
 
 <form method="GET" action="/new">
   <input type="submit" value="Add Comp"><br><br>
+</form>
+
+<form method="post" action="/logout">
+  <input type="submit" value="Logout">
 </form>

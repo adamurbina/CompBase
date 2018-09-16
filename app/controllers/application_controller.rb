@@ -9,4 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
+  enable :sessions
+  use Rack::Flash
+
 end

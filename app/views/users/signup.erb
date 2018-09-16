@@ -8,6 +8,11 @@
 <form action='/signup' method='post'>
 <h2>Create New User Acccount</h2>
 
+<% if flash.has?(:message)%>
+  <font color="red"><%= flash[:message] %></font>
+<% end %>
+<br></br>
+
 <label>Username >>> </label>
 <input type="text" name="username"><br></br>
 <label>Password >>> </label>
